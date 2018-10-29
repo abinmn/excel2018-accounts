@@ -93,8 +93,10 @@ class PaidReg(TemplateView):
             phone=form.cleaned_data.get('phone')
             college=form.cleaned_data.get('college')
             event=form.cleaned_data.get('event')
+            price=form.cleaned_data.get('price')
             code='EXT'+uniqueid(8)
-            u=paid_userinfo(excelid=code,name=name,college=college,email=mail,phone=phone,event=event,outsider=True,present=True)
+            u=paid_userinfo(excelid=code,name=name,college=college,email=mail,
+            phone=phone,event=event,outsider=True,present=True,price=price)
             u.save()
             #flag for offlinereg or paidreg
             flag=1

@@ -436,7 +436,7 @@ class PaidRegistrationForm(forms.Form):
     #     ("GZON","Game Zone"),
     # )
 
-    EVENT = ((x.event_id,x.event_name) for x in event.objects.filter(paid=True))
+    EVENT = ((x.event_id, x.event_name) for x in event.objects.filter(paid=True))
 
     name=forms.CharField(max_length=50,required=True,label='',widget=forms.TextInput(attrs={
         "placeholder":"Full Name",
@@ -466,6 +466,12 @@ class PaidRegistrationForm(forms.Form):
         "class":"form-control",
         "style":"height:50px;margin-bottom:20px;"
     }))
+
+    price = forms.IntegerField(label='', widget=forms.TextInput(attrs={
+        "placeholder":"Price",
+        "class":"form-control",
+        "style":"height:50px;margin-bottom:10px;"}))
+
     def clean(self):
         super(PaidRegistrationForm,self).clean()
 

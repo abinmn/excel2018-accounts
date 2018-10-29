@@ -53,6 +53,7 @@ class paid_userinfo(models.Model):
     outsider=models.BooleanField(default=False)
     printed=models.BooleanField(default=False)
     event=models.CharField(max_length=100,null=True)
+    price=models.IntegerField(default=0)
 
     def __str__(self):
         return str(self.name)

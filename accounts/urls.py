@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from register.views import RegView, PaidReg, OfflineReg, SchoolReg, Certi, SearchByView, index
-from controlroom.views import PostCreate, Android, Download, Winnerapi, EventNav, WinnerDownload, EventView, ControlRoomView, userdata
+from controlroom.views import PostCreate, Android, Download, Winnerapi, EventNav, WinnerDownload, EventView, ControlRoomView, userdata, paiduserdata
 
 urlpatterns = [
 	path('', index, name='index'),
@@ -39,5 +39,6 @@ urlpatterns = [
 		 WinnerDownload.as_view(), name='windown'),
 	path('api/<slug:pk>/', Android.as_view(), name='api'),
 	path('winnerapi/<slug:pk>/', Winnerapi.as_view(), name='winnerapi'),
+	path('paiduserdata/', paiduserdata, name='paiduserdata'),
 	path('userdata/', userdata, name='userdata')
 ]

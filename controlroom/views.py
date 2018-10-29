@@ -19,7 +19,7 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 from reportlab.platypus.paragraph import Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.styles import ParagraphStyle as PS
-from controlroom.export_data import generatecsv
+from controlroom.export_data import generatepaidcsv, generateusercsv
 
 def generatepdf(win,event):
     s="static/pdf/"+event
@@ -34,7 +34,7 @@ def generatepdf(win,event):
                   spaceAfter = 30,
                   )
     for obj in win:
-        data.append(["EX"+obj.excelid,obj.name,obj.phone])
+        data.append([obj.excelid,obj.name,obj.phone])
 
     t = Table(data)#,2*[2*inch], len(data)*[0.3*inch])
     t.setStyle(TableStyle([
@@ -63,7 +63,7 @@ def generatepdfwinners(win,event):
                   spaceAfter = 30,
                   )
     for obj in win:
-        data.append([obj.position,"EX"+obj.excelid,obj.name,obj.college])
+        data.append([obj.position, obj.excelid,obj.name,obj.college])
     t=Table(data)#,2*[2*inch], len(data)*[0.3*inch])
     t.setStyle(TableStyle([
         ('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
@@ -265,6 +265,7 @@ class Download(TemplateView):
         event1=self.kwargs['eve']
         print(event1)
         obj = event.objects.get(event_id=event1)
+        event1=obj.event_name
         print(type(obj))
         if obj.short_list!="nil":
             shortlisted = obj.short_list.split(',')
@@ -305,6 +306,7 @@ class WinnerDownload(TemplateView):
     def get(self,request,*args,**kwargs):
         event1=self.kwargs['eve']
         obj = event.objects.get(event_id=event1)
+        event1=obj.event_name
         if not obj.paid:
             win = winners.objects.filter(event = obj.event_name).order_by('position')
         else:
@@ -320,11 +322,20 @@ class WinnerDownload(TemplateView):
             return response
 
 
-def userdata(request):
-    file = open("static/csv/external_users.csv", "w+")
-    generatecsv(file)
-    readfile=open("static/csv/external_users.csv", "r")
+def paiduserdata(request):
+    file = open("static/csv/paidEventsData.csv", "w+")
+    generatepaidcsv(file)
+    readfile=open("static/csv/paidEventsData.csv", "r")
     response = HttpResponse(readfile.read())
     response['content_type'] = 'application/csv'
-    response['Content-Disposition'] = 'attachment;filename=external_users.csv'
+    response['Content-Disposition'] = 'attachment;filename=paidEventsData.csv'
+    return response
+
+def userdata(request):
+    file = open("static/csv/spotRegData.csv", "w+")
+    generateusercsv(file)
+    readfile=open("static/csv/spotRegData.csv", "r")
+    response = HttpResponse(readfile.read())
+    response['content_type'] = 'application/csv'
+    response['Content-Disposition'] = 'attachment;filename=paidEventsData.csv'
     return response
