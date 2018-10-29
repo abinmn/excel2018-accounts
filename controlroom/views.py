@@ -19,7 +19,7 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 from reportlab.platypus.paragraph import Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.styles import ParagraphStyle as PS
-
+from controlroom.export_data import generatecsv
 
 def generatepdf(win,event):
     s="static/pdf/"+event
@@ -36,7 +36,7 @@ def generatepdf(win,event):
     for obj in win:
         data.append(["EX"+obj.excelid,obj.name,obj.phone])
 
-    t = Table(data,2*[2*inch], len(data)*[0.3*inch])
+    t = Table(data)#,2*[2*inch], len(data)*[0.3*inch])
     t.setStyle(TableStyle([
         ('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
         ('BOX', (0,0), (-1,-1), 0.25, colors.black),
@@ -64,7 +64,7 @@ def generatepdfwinners(win,event):
                   )
     for obj in win:
         data.append([obj.position,"EX"+obj.excelid,obj.name,obj.college])
-    t=Table(data,2*[2*inch], len(data)*[0.3*inch])
+    t=Table(data)#,2*[2*inch], len(data)*[0.3*inch])
     t.setStyle(TableStyle([
         ('INNERGRID', (0,0), (-1,-1), 0.25, colors.black),
         ('BOX', (0,0), (-1,-1), 0.25, colors.black),
@@ -318,3 +318,13 @@ class WinnerDownload(TemplateView):
             response['content_type'] = 'application/pdf'
             response['Content-Disposition'] = 'attachment;filename=%s' % fname
             return response
+
+
+def userdata(request):
+    file = open("static/csv/external_users.csv", "w+")
+    generatecsv(file)
+    readfile=open("static/csv/external_users.csv", "r")
+    response = HttpResponse(readfile.read())
+    response['content_type'] = 'application/csv'
+    response['Content-Disposition'] = 'attachment;filename=external_users.csv'
+    return response

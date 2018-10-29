@@ -9,13 +9,15 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<script src="https://use.fontawesome.com/75bc5066dd.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Comfortaa|Josefin+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="{% static "controlroom/css/home.css" %}">
+
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript">
 		function replace(demo){
-			var str = document.getElementById(demo).innerHTML; 
+			var str = document.getElementById(demo).innerHTML;
   			var res = str.replace(/,/g, "<br/>");
   			document.getElementById(demo).innerHTML = res;
-		} 
+		}
 
 		function jsfunction(){
 			var c=document.getElementById("selctd").value;
@@ -46,6 +48,11 @@
 <body style="overflow-x:hidden; " >
 	<nav class="navbar navbar-default navbar-fixed-top" role="header">
 		<div class="container1 container-fluid">
+			<div class="fixed-top col-sm-1 " style="background-color: #d55d74;">
+	      <a href="\">
+	        <button class="home_button">Home</button>
+	      </a>
+	     </div>
 			<div class="navbar-header logos_section col-sm-12" >
 				<div class="col-sm-6">
 					<!-- <img src="{% static "register/images/excel2018.png" %}"/> -->
@@ -65,10 +72,11 @@
 				<div class="col-sm-12">
 					<div class="col-sm-6" style="margin-bottom:20px;">
 						<select class="sel form-control" name="searchby" text="" selected="selected" style="width:100%;height: 46px;" placeholder="Search for" onchange="jsfunction()" id="selctd">
-							<option selected="{{ searchby }}" value="{{ searchby }}">{{ searchby }}</option>
-							<option value="phone">phone</option>
-							<option value="name">name</option>
+							<!-- <option selected="{{ searchby }}" value="{{ searchby }}">{{ searchby }}</option> -->
 							<option value="excelid">excelid</option>
+							<option value="name">name</option>
+							<option value="phone">phone</option>
+
 						</select>
 					</div>
 					<div class="col-sm-6">
@@ -108,10 +116,10 @@
 						<th>Mark as present</th>
 					</tr>
 				</thead>
-				{% for object in obj  %}	
+				{% for object in obj  %}
 				<tbody>
 					<tr>
-						<td><b>EX{{ object.excelid }}</b></td>
+						<td><b>{{ object.excelid }}</b></td>
 						<td>{{ object.name }}</td>
 						<td>{{ object.college }}</td>
 						<td>{{ object.email }}</td>

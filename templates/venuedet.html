@@ -9,17 +9,24 @@
 		<link rel="stylesheet" href="{% static "controlroom/css/venue.css" %}">
 		<script src="https://use.fontawesome.com/75bc5066dd.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Comfortaa|Josefin+Sans" rel="stylesheet">
+		<link rel="stylesheet" href="{% static "controlroom/css/home.css" %}">
+
 		<script type="text/javascript">
 			function navhome(){
 			window.location = "/controlroom/"
-		}	
+		}
 		</script>
 	</head>
-	
+
 	<body>
 	<div class="logos_section">
+		<div class="fixed-top col-sm-1 " style="background-color: #d55d74;">
+      <a href="\">
+        <button class="home_button">Home</button>
+      </a>
+     </div>
 		<!-- <img onclick="navhome()" src="{% static "register/images/excel2018.png" %}"/> -->
-	</div>	
+	</div>
 		<div class="container" style="text-align: center;margin: auto;padding: auto;padding-top:10px;">
 			<div class="row">
 				<div class="text-center col-sm-12">
@@ -44,7 +51,7 @@
 					<h1 style="font-size:25px;">Venue status</h1>
 					{% if venue.occupied %}
 						<p style="font-size:20px;color:red;">Occupied</p>
-					{% else %} 
+					{% else %}
 						<p style="font-size:20px;color:green;">Free</p>
 					{% endif %}
 				</div>
@@ -74,7 +81,7 @@
 				</table>
 				</div>
 				<div class="col-sm-4 col-sm-offset-4" style="margin-top:50px;">
-					<a href="/venuepage/{{ venue.venue_id }}/create/"><button class="button">Update</button></a> 
+					<a href="/venuepage/{{ venue.venue_id }}/create/"><button class="button">Update</button></a>
 				</div>
 			</div>
 		</div>

@@ -1,13 +1,14 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core.validators import EmailValidator
-from register.validators import redundantmail     
+from register.validators import redundantmail
 from register.validators import number
 from register.validators import redundantmailforpaid
 from register.validators import redundantnum
 from register.validators import redundantnumforpaid
 from register.validators import validatemail
 from register.models import userinfo
+from controlroom.models import event
 
 
 class RegistrationForm(forms.Form):
@@ -224,11 +225,11 @@ class RegistrationForm(forms.Form):
         "class":"form-control",
         "style":"height:50px;margin-bottom:10px;"
     }))
-    stay=forms.TypedChoiceField(coerce=lambda x: bool(int(x)),choices = TRUE_FALSE_CHOICES,label='',widget=forms.Select(attrs={
-        "placeholder":"Stay Required",
-        "class":"form-control",
-        "style":"height:50px;margin-bottom:20px;"
-    }))
+    # stay=forms.TypedChoiceField(coerce=lambda x: bool(int(x)),choices = TRUE_FALSE_CHOICES,label='',widget=forms.Select(attrs={
+    #     "placeholder":"Stay Required",
+    #     "class":"form-control",
+    #     "style":"height:50px;margin-bottom:20px;"
+    # }))
     def clean(self):
         super(RegistrationForm,self).clean()
 
@@ -426,14 +427,16 @@ class PaidRegistrationForm(forms.Form):
     ("Others","Others")
     )
 
-    EVENT = (
-        ('','Event'),
-        ("ROBW","Robowar"),
-        ("GOD","Game Of Drones"),
-        ("ROBS","Robosoccer"),
-        ("GPLAN","Game Plan"),
-        ("GZON","Game Zone"),
-    )
+    # EVENT = (
+    #     ('','Event'),
+    #     ("ROBW","Robowar"),
+    #     ("GOD","Game Of Drones"),
+    #     ("ROBS","Robosoccer"),
+    #     ("GPLAN","Game Plan"),
+    #     ("GZON","Game Zone"),
+    # )
+
+    EVENT = ((x.event_id,x.event_name) for x in event.objects.filter(paid=True))
 
     name=forms.CharField(max_length=50,required=True,label='',widget=forms.TextInput(attrs={
         "placeholder":"Full Name",
@@ -456,11 +459,8 @@ class PaidRegistrationForm(forms.Form):
         "class":"form-control",
         "style":"height:50px;margin-bottom:10px;"
     }))
-    stay=forms.TypedChoiceField(coerce=lambda x: bool(int(x)),choices = TRUE_FALSE_CHOICES,label='',widget=forms.Select(attrs={
-        "placeholder":"Stay Required",
-        "class":"form-control",
-        "style":"height:50px;margin-bottom:10px;"
-    }))
+
+
     event=forms.ChoiceField(choices = EVENT,label='',widget=forms.Select(attrs={
         "placeholder":"Event Name",
         "class":"form-control",
@@ -507,11 +507,10 @@ class OfflineRegistrationForm(forms.Form):
         "class":"form-control",
         "style":"height:50px;margin-bottom:10px;"
     }))
-    stay=forms.TypedChoiceField(coerce=lambda x: bool(int(x)),choices = TRUE_FALSE_CHOICES,label='',widget=forms.Select(attrs={
-        "placeholder":"Stay Required",
-        "class":"form-control",
-        "style":"height:50px;margin-bottom:20px;"
-    }))
+    # stay=forms.TypedChoiceField(coerce=lambda x: bool(int(x)),choices = TRUE_FALSE_CHOICES,label='',widget=forms.Select(attrs={
+    #     "placeholder":"Stay Required",
+    #     "class":"form-control",
+    #     "style":"height:50px;margin-bottom:20px;"
+    # }))
     def clean(self):
         super(OfflineRegistrationForm,self).clean()
- 

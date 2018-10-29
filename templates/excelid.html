@@ -17,8 +17,8 @@
 			function navhomepaid(){
 					window.location = "/paidreg/"
 			}
-			function navhomestudent(){
-					window.location = "/studentreg/"
+			function navhomeonline(){
+					window.location = "/online/"
 			}
 	</script>
 
@@ -29,7 +29,7 @@
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4" style="text-align: center;">
 				<h1 style="margin-top:100px;">Excel ID for the user is</h3>
-				<h3>EX{{ excelid }}</h3>
+				<h3>{{ excelid }}</h3>
 			</div>
 			<div class="text-center col-sm-12">
 				<div class="col-sm-4 col-sm-offset-4" style="margin-top:200px;">
@@ -38,7 +38,7 @@
 					{% elif flag == 1 %}
 						<button class="button" onclick="navhomepaid()">Register next user</button>
 					{% else %}
-						<button class="button" onclick="navhomestudent()">Register next user</button>
+						<button class="button" onclick="navhomeonline()">Register next user</button>
 					{% endif %}
 				</div>
 			</div>

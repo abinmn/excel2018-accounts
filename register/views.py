@@ -11,19 +11,29 @@ from itertools import chain
 import sys
 from django.shortcuts import render
 
-def genexid(size=4, nums=string.digits):
+def index(request):
+    return render(request, "index.html")
+
+def genexid(size, nums=string.digits):
     exid = ''
-    for _ in range(size):
-        exid += random.choice(nums)
-        return exid
+    # for _ in range(size):
+    #     exid += random.choice(nums)
+    #     return exid
+    if (size==7):
+        exid = random.randint(7000,8000)
+    elif(size==8):
+        exid = random.randint(8001,8999)
+    else:
+        exid  = random.randint(5000,6000)
+    return exid
 
 def uniqueid(x):
-    code=  x + genexid()
+    code=  genexid(x)
     qs = userinfo.objects.filter(excelid=code).exists()
     print(qs)
     if qs:
-        uniqueid()
-    return code
+        uniqueid(x)
+    return str(code)
 
 class RegView(TemplateView):
 
@@ -47,14 +57,17 @@ class RegView(TemplateView):
             name = form.cleaned_data.get('name')
             phone = form.cleaned_data.get('phone')
             college = form.cleaned_data.get('college')
-            stay1 = form.cleaned_data.get('stay')
-            code = uniqueid('6')
-            u = userinfo(excelid=code, name=name, college=college, email=mail, phone=phone, stay=stay1)
+            code = 'EX'+uniqueid(7)
+            u = userinfo(excelid=code, name=name, college=college, email=mail, phone=phone, outsider=True)
             u.save()
             # obj=userinfo.objects.get(email=mail)
             # im=pyqrcode.create(obj.excelid)
             # im.svg('static/qrcodes/%s.svg'%(obj.excelid),scale=20)
-            return render(request,"success.html",{"name":name})
+            context = {
+                "excelid":code,
+                "flag" : 2
+            }
+            return render(request,"excelid.html",context)
 
         return render(request,"home.html",context)
 
@@ -79,16 +92,16 @@ class PaidReg(TemplateView):
             name=form.cleaned_data.get('name')
             phone=form.cleaned_data.get('phone')
             college=form.cleaned_data.get('college')
-            stay=form.cleaned_data.get('stay')
             event=form.cleaned_data.get('event')
-            code=uniqueid('7')
-            u=paid_userinfo(excelid=code,name=name,college=college,email=mail,phone=phone,event=event,stay=stay,present=True)
+            code='EXT'+uniqueid(8)
+            u=paid_userinfo(excelid=code,name=name,college=college,email=mail,phone=phone,event=event,outsider=True,present=True)
             u.save()
             #flag for offlinereg or paidreg
-            flag=0
+            flag=1
             context = {
                 "excelid":code,
-                "flag" : flag
+                "flag" : flag,
+                "team":True
             }
             return render(request,"excelid.html",context)
         return render(request,"paidreg.html",context)
@@ -113,10 +126,9 @@ class OfflineReg(TemplateView):
             mail=form.cleaned_data.get('email')
             name=form.cleaned_data.get('name')
             phone=form.cleaned_data.get('phone')
-            college="Model engineering College"
-            stay=form.cleaned_data.get('stay')
-            code=uniqueid('6')
-            u=userinfo(excelid=code,name=name,college=college,email=mail,phone=phone,stay=stay,present=True)
+            college="Model Engineering College"
+            code='EX'+uniqueid(6)
+            u=userinfo(excelid=code,name=name,college=college,email=mail,phone=phone,outsider=False,present=True)
             u.save()
             #flag for offlinereg or paidreg
             flag=0
@@ -147,7 +159,7 @@ class SchoolReg(TemplateView):
         if form.is_valid():
             name=form.cleaned_data.get('Name')
             college=form.cleaned_data.get('College')
-            code=uniqueid('9')
+            code='EX'+uniqueid(9)
             u=userinfo(excelid=code,name=name,college=college,stay=False,present=True)
             u.save()
             #flag for offlinereg or paidreg

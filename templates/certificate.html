@@ -37,13 +37,14 @@
    		border: 1px solid #ccc;
 	    border-top: none;
 	}
-	
+
 
 </style>
 	{% load staticfiles %}
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<link rel="stylesheet" href="{% static "controlroom/css/main.css" %}">
+	<link rel="stylesheet" href="{% static "controlroom/css/home.css" %}">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<script src="https://use.fontawesome.com/75bc5066dd.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Comfortaa|Josefin+Sans" rel="stylesheet">
@@ -147,6 +148,11 @@
 <body style="overflow-x:hidden; ">
 	<nav class="navbar navbar-default navbar-fixed-top" role="header">
 		<div class="container1 container-fluid">
+			<div class="fixed-top col-sm-1 " style="background-color: #d55d74;">
+	      <a href="\">
+	        <button class="home_button">Home</button>
+	      </a>
+	     </div>
 			<div class="navbar-header logos_section col-sm-12" >
 				<div class="col-sm-6">
 					<!-- <img onclick="navhome()" src="{% static "register/images/excel2018.png" %}"/> -->
@@ -174,7 +180,7 @@
 		</div>
 	</nav>
 		<div class="item_container" id="res">
-		{% if sb == 1 %}	
+		{% if sb == 1 %}
 			<table width=100% style="margin:20px;">
 				<thead>
 					<tr class="info">
@@ -186,7 +192,7 @@
 						<th>Participated Events</th>
 					</tr>
 				</thead>
-				{% for object in obj  %}	
+				{% for object in obj  %}
 				<tbody>
 					<tr>
 						<td>EX{{ object.excelid }}</td>
@@ -194,7 +200,7 @@
 						<td>{{ object.college }}</td>
 						<td>{{ object.email }}</td>
 						<td>{{ object.phone }}</td>
-						<td>{{ object.participated_events }}</td>	
+						<td>{{ object.participated_events }}</td>
 					</tr>
 				</tbody>
 				{% endfor %}
@@ -202,7 +208,7 @@
 		{% endif %}
 
 		<div class="item_certi" id="res">
-		 <div margin-top = "2px"> 
+		 <div margin-top = "2px">
 			<div class="tab">
 	  			<button class="tablinks" onclick="openTab(event, 'Winners')" id="defaultOpen"><h4>Winners</h4></button>
 	  			<button class="tablinks" onclick="openTab(event, 'Participants(Non-Mec)')"><h4>Participants(Non-Mec)</h4></button>
@@ -210,10 +216,10 @@
 				<button class="tablinks" onclick="openTab(event, 'Participants(Paid-events)')"><h4>Participants(Paid-events)</h4></button>
 			</div>
 			<div id="Winners" class="tabcontent">
- 		 
+
  			<table width=100% >
  			 <tr style="font-weight:bold">
- 		 		<td>EXCEL ID&emsp;</td><td>NAME&emsp;</td><td>EVENT &emsp;</td><td>POSITION&emsp;</td> <td>COLLEGE</td> 
+ 		 		<td>EXCEL ID&emsp;</td><td>NAME&emsp;</td><td>EVENT &emsp;</td><td>POSITION&emsp;</td> <td>COLLEGE</td>
  			 	</tr>
  			 {% for item in win_obj %}
  			 	<tr >
@@ -249,14 +255,14 @@
  			 	{% endif %}
  			 	</tr>
  			 {% endfor %}
- 			 </table>  
+ 			 </table>
 			</div>
 
 			<div id="Winners(Paid-events)" class="tabcontent">
-			
+
  			 <table width=100% >
  			 <tr style="font-weight:bold">
- 			 	<td>EXCEL ID&emsp;</td><td>NAME&emsp;</td><td>EVENT &emsp;</td><td>POSITION&emsp;</td> <td>COLLEGE</td> 
+ 			 	<td>EXCEL ID&emsp;</td><td>NAME&emsp;</td><td>EVENT &emsp;</td><td>POSITION&emsp;</td> <td>COLLEGE</td>
  			 	</tr>
  			 {% for item in paid_win_obj %}
  			 	<tr>
@@ -286,10 +292,10 @@
 					 {% endif %}
 					 </tr>
 				{% endfor %}
-				</table>  
-			</div>	
+				</table>
+			</div>
 
-		</div> 
+		</div>
 	</div>
 </body>
 </html>

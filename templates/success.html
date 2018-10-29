@@ -10,10 +10,17 @@
 	<link rel="stylesheet" href="{% static "register/css/main.css" %}">
 	<script src="https://use.fontawesome.com/75bc5066dd.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Comfortaa|Josefin+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="{% static "controlroom/css/home.css" %}">
+
 </head>
 <body style="overflow-x:hidden; ">
 	{% load static %}
 	<div class="container-fluid">
+		<div class="fixed-top col-sm-1 " style="background-color: #d55d74;">
+      <a href="\">
+        <button class="home_button">Home</button>
+      </a>
+     </div>
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4" style="text-align: center;margin-top:50px; ">
 				<!--<img src="{% get_static_prefix %}qrcodes/{{ object.excelid }}.svg" class="img-responsive">

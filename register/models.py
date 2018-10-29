@@ -13,7 +13,7 @@ class userinfo(models.Model):
     email = models.EmailField(max_length=50,null=True)
     phone = models.CharField(max_length=10,null=True)
     present = models.BooleanField(default=False)
-    stay = models.BooleanField(default=False)
+    outsider = models.BooleanField(default=False)
     printed = models.BooleanField(default=False)
     participated_events = models.CharField(max_length=100,blank=True)
 
@@ -50,7 +50,7 @@ class paid_userinfo(models.Model):
     email=models.EmailField(max_length=50,null=True)
     phone=models.CharField(max_length=10,null=True)
     present=models.BooleanField(default=False)
-    stay=models.BooleanField(default=False)
+    outsider=models.BooleanField(default=False)
     printed=models.BooleanField(default=False)
     event=models.CharField(max_length=100,null=True)
 

@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from register.views import RegView, PaidReg, OfflineReg, SchoolReg, Certi, SearchByView
-from controlroom.views import PostCreate, Android, Download, Winnerapi, EventNav, WinnerDownload, EventView, ControlRoomView
+from register.views import RegView, PaidReg, OfflineReg, SchoolReg, Certi, SearchByView, index
+from controlroom.views import PostCreate, Android, Download, Winnerapi, EventNav, WinnerDownload, EventView, ControlRoomView, userdata
 
 urlpatterns = [
+	path('', index, name='index'),
 	path('admin/', admin.site.urls),
 	path('online/', RegView.as_view(), name='home'),
 	path('paidreg/', PaidReg.as_view(), name='paidreg'),
@@ -37,5 +38,6 @@ urlpatterns = [
 	path('eventpage/<slug:eve>/winnerdownload/',
 		 WinnerDownload.as_view(), name='windown'),
 	path('api/<slug:pk>/', Android.as_view(), name='api'),
-	path('winnerapi/<slug:pk>/', Winnerapi.as_view(), name='winnerapi')
+	path('winnerapi/<slug:pk>/', Winnerapi.as_view(), name='winnerapi'),
+	path('userdata/', userdata, name='userdata')
 ]

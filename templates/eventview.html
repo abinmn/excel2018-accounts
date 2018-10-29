@@ -13,9 +13,11 @@
 		<script type="text/javascript">
 			function navhome(){
 			window.location = "/controlroom/"
-		}	
-		
+		}
+
 		</script>
+		<link rel="stylesheet" href="{% static "controlroom/css/home.css" %}">
+
 		<style>
       	table, th, td {
       		border: 1px solid black;
@@ -31,8 +33,13 @@
 </head>
 <body>
 	<div class="logos_section">
+		<div class="fixed-top col-sm-1 " style="background-color: #d55d74;">
+      <a href="\">
+        <button class="home_button">Home</button>
+      </a>
+     </div>
 		<!-- <img onclick="navhome()" src="{% static "register/images/excel2018.png" %}"/> -->
-	</div>	
+	</div>
 	<div class="container" style="text-align: center;margin: auto;padding: auto;padding-top:10px;">
 		<div class="row">
 			<div class="text-center col-sm-12">
@@ -82,13 +89,13 @@
 		</div>
 	<div class="col-sm-12">
 	<div class="col-sm-4" style="margin-top:50px;">
-		<a href="/eventpage/{{ id }}/create/"><button class="button">Update</button></a> 
+		<a href="/eventpage/{{ id }}/create/"><button class="button">Update</button></a>
 	</div>
 	<div class="col-sm-4" style="margin-top:50px;">
-		<a href="/eventpage/{{ id }}/download/"><button class="button">Download shortlist</button></a> 
+		<a href="/eventpage/{{ id }}/download/"><button class="button">Download shortlist</button></a>
 	</div>
 	<div class="col-sm-4" style="margin-top:50px;">
-		<a href="/eventpage/{{ id }}/winnerdownload/"><button class="button">Download winners</button></a> 
+		<a href="/eventpage/{{ id }}/winnerdownload/"><button class="button">Download winners</button></a>
 	</div>
 	</div>
 </div>

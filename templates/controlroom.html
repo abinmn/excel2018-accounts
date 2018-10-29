@@ -73,16 +73,16 @@
 
 							if(hours_and_min_start[0]===device_time[0]){
 								if(device_time[1]>=hours_and_min_start[1]){
-									if(!$(this).hasClass("success")){	
+									if(!$(this).hasClass("success")){
 										$(this).removeClass("warning");
 										$(this).addClass("warning");}
-									} 
+									}
 								}
-								else if(hours_and_min_start[0]<device_time[0]) { 
-									if(!$(this).hasClass("success")){	
+								else if(hours_and_min_start[0]<device_time[0]) {
+									if(!$(this).hasClass("success")){
 										$(this).removeClass("warning");
 										$(this).addClass("warning");}
-									} 
+									}
 
 									if(hours_and_min[0]===device_time[0]){
 										if(device_time[1]>=hours_and_min[1]){
@@ -99,9 +99,9 @@
 
 		function finddate(){
 			var currentdate = new Date();
-			var day = currentdate.getDate(); 
+			var day = currentdate.getDate();
 			var hour = currentdate.getHours();
-			var min = currentdate.getMinutes();  
+			var min = currentdate.getMinutes();
 			return(hour+":"+min);
 		}
 
@@ -110,7 +110,7 @@
 		function jsfunction(){
 			var c=document.getElementById("selctd").value;
 			if(c==="events of the day"){
-				window.location = window.location.pathname;	
+				window.location = window.location.pathname;
 			}
 			else{
 
@@ -123,7 +123,7 @@
 
 		function refreshtable(){
 			$("#tab").load(location.href + " #tab>*", "",function(){
-				changecolor();           	
+				changecolor();
 			});
 
 			setTimeout(function(){
@@ -143,14 +143,14 @@
 				},
 				dataType: 'json',
 				success: function (data) {
-					var select = document.getElementById("browsers");  
+					var select = document.getElementById("browsers");
 					var count=0;
 					for(var i =0; i< data.dataset.length; i++){
 						if(count===0){
-							select.innerHTML="<option value="+data.dataset[i]+"></option>"; 
+							select.innerHTML="<option value="+data.dataset[i]+"></option>";
 							count++;
 						}else{
-							select.innerHTML+="<option value="+data.dataset[i]+"></option>"; 
+							select.innerHTML+="<option value="+data.dataset[i]+"></option>";
 						}
 					}
 				}
@@ -208,10 +208,17 @@
 		}
 
 	</script>
+	<link rel="stylesheet" href="{% static "controlroom/css/home.css" %}">
+
 </head>
 <body style="overflow-x:hidden; " >
 	<nav class="navbar navbar-default navbar-fixed-top" role="header">
 		<div class="container1 container-fluid">
+			<div class="fixed-top col-sm-1 " style="background-color: #d55d74;">
+	      <a href="\">
+	        <button class="home_button">Home</button>
+	      </a>
+	     </div>
 			<div class="navbar-header logos_section col-sm-12" >
 				<div class="col-sm-6">
 					<!-- <img onclick="navhome()" src="{% static "register/images/excel2018.png" %}"/> -->
@@ -277,7 +284,7 @@
 			</thead>
 			{% for object in obj  %}
 			<tbody>
-				<tr>	
+				<tr>
 					<td><a href="/venuepage/{{ object.venue_id }}">{{ object.venue_id }}</a></td>
 					<td>{{ object.vm_1 }}</td>
 					<td>{{ object.vm_2 }}</td>
@@ -301,7 +308,7 @@
 					<th>EndTime</th>
 				</tr>
 			</thead>
-			{% for object in obj  %}	
+			{% for object in obj  %}
 			<tbody>
 				{% if object.status == 1 %}
 				<tr class="success">
@@ -333,7 +340,7 @@
 						<th>Participated Events</th>
 					</tr>
 				</thead>
-				{% for object in obj  %}	
+				{% for object in obj  %}
 				<tbody>
 					<tr>
 						<td>EX{{ object.excelid }}</td>
@@ -367,7 +374,7 @@
 						<th>EndTime</th>
 					</tr>
 				</thead>
-				{% for object in obj  %}	
+				{% for object in obj  %}
 				<tbody>
 					<tr>
 						<td><a href="/eventpage/{{ object.event_id }}">{{ object.event_id }}</a></td>

@@ -37,7 +37,7 @@
    		border: 1px solid #ccc;
 	    border-top: none;
 	}
-	
+
 
 </style>
 	{% load staticfiles %}
@@ -75,33 +75,40 @@
     		evt.currentTarget.className += " active";
 		}
 
-		
+
 		function navsame(){
 			window.location = "/eventpage/"
 		}
 
-		
 
-		
+
+
 	</script>
+	<link rel="stylesheet" href="{% static "controlroom/css/home.css" %}">
+
 </head>
 <body style="overflow-x:hidden; ">
 			<div class="logos_section col-sm-12" style="margin-top:20px;">
 				<div class="col-sm-6">
+					<div class="fixed-top col-sm-1 " style="background-color: #d55d74;">
+			      <a href="\">
+			        <button class="home_button">Home</button>
+			      </a>
+			     </div>
 					<!-- <img onclick="navhome()" src="{% static "register/images/excel2018.png" %}"/> -->
 				</div>
 			</div>
 		<div id="res">
 		<div class="item_certi" id="res">
-		 <div margin-top = "2px"> 
+		 <div margin-top = "2px">
 			<div class="tab">
 	  			<button class="tablinks" onclick="openTab(event, 'Day 1')" id="defaultOpen"><h4>Day 1</h4></button>
 	  			<button class="tablinks" onclick="openTab(event, 'Day 2')"><h4>Day 2</h4></button>
 				<button class="tablinks" onclick="openTab(event, 'Day 3')"><h4>Day 3</h4></button>
-				
+
 			</div>
 			<div id="Day 1" class="tabcontent">
- 		 
+
  			<table width=100% >
  			 <tr style="font-weight:bold">
  		 		<td>EVENTNAME&emsp;</td>
@@ -109,7 +116,7 @@
  			 {% for item in day1 %}
  			 	<tr >
  				 	<td style="cursor: pointer;cursor: hand;"><b><a href="/eventpage/{{ item.event_id}}">{{ item.event_name}}</a></b></td>
- 			 	
+
  			 	</tr>
  			 {% endfor %}
  			</table>
@@ -123,15 +130,15 @@
  			 	{% for item in day2 %}
  			 	<tr >
  				 	<td style="cursor: pointer;cursor: hand;"><a href="/eventpage/{{ item.event_id}}">{{ item.event_name}}</a></td>
- 			 	
+
  			 	</tr>
  			 {% endfor %}
- 			 
- 			 </table>  
+
+ 			 </table>
 			</div>
 
 			<div id="Day 3" class="tabcontent">
-			
+
  			 <table width=100% >
  			 <tr style="font-weight:bold">
  			 	<td>EVENTNAME&emsp;</td>
@@ -139,14 +146,14 @@
  			 {% for item in day3 %}
  			 	<tr >
  				 	<td style="cursor: pointer;cursor: hand;"><b><a href="/eventpage/{{ item.event_id}}">{{ item.event_name}}</a></b></td>
- 			 	
+
  			 	</tr>
  			 {% endfor %}
  			 </table>
 			</div>
 
-			
-		</div> 
+
+		</div>
 	</div>
 </body>
 </html>

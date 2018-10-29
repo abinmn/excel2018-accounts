@@ -12,12 +12,19 @@
 		<script type="text/javascript">
 			function navhome(){
 			window.location = "/controlroom/"
-		}	
+		}
 		</script>
+		<link rel="stylesheet" href="{% static "controlroom/css/home.css" %}">
+
 	</head>
-	
+
 	<body>
 		<div class="container" style="text-align: center;margin: auto;padding: auto;padding-top:10px;">
+			<div class="fixed-top col-sm-1 " style="background-color: #d55d74;">
+	      <a href="\">
+	        <button class="home_button">Home</button>
+	      </a>
+	     </div>
 			<div class="row">
 				<div class="text-center col-sm-12">
 					<h3 class="k" >{{ venue.venue_id }}</h3>

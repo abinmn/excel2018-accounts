@@ -11,12 +11,19 @@
 		<script src="https://use.fontawesome.com/75bc5066dd.js"></script>
 		<link href="https://fonts.googleapis.com/css?family=Comfortaa|Josefin+Sans" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{% static "controlroom/css/home.css" %}">
+
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
-	
+
 	<body>
 		<div class="container" style="text-align: center;margin: auto;padding: auto;padding-top:10px;">
+			<div class="fixed-top col-sm-1 " style="background-color: #d55d74;">
+	      <a href="\">
+	        <button class="home_button">Home</button>
+	      </a>
+	     </div>
 			<div class="row">
 				<div class="text-center col-sm-12">
 					<h3>Update</h3>
@@ -32,7 +39,7 @@
 						<input type="submit" value="Update" class="button" style="margin-top:20px;">
 						</div>
 						</form>
-					 </div> 
+					 </div>
 					</div>
 				</div>
 			</div>
@@ -40,12 +47,12 @@
 		<div class="container-fluid">
 			<div class="row modal-footer f1" style="margin-top:30px;">
 				<h3 style="text-align: center;"></h3>
-				
+
 				<div class="social">
 					<a class="facebook" target="_blank" href="http://facebook.com/excelmec"><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
 					<a class="youtube" target="_blank" href="https://www.youtube.com/channel/UCLP9HOgPekLpFzv2xIVwoFg"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
 					<a class="instagram" target="_blank" href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-				</div>		
+				</div>
 				<div class="logos_section">
 					<a href="http://mec.ac.in/" target="_blank"><img src="{% static "register/images/mec_logo.png" %}"></a>
 					<!-- <img src="{% static "register/images/excel2018.png" %}"> -->
