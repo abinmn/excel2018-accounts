@@ -1,9 +1,11 @@
+
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from register.forms import RegistrationForm, PaidRegistrationForm, StudentForm, OfflineRegistrationForm
 import string
 from django.http import JsonResponse
 from register.models import userinfo, winners, paid_userinfo, paid_winners
+from  controlroom.models import event
 import pyqrcode
 from django.http import HttpResponseRedirect
 import random
@@ -301,6 +303,14 @@ class SearchByView(TemplateView):
             #result=paid_userinfo.objects.filter(name__icontains=value)
             sb=0
 
+        event_objects = event.objects.all()
+        event_buffer = ''
+        for user in result:
+            for event_obj in event_objects:
+                if user.excelid in event_obj.short_list:
+                    event_buffer += event_obj.event_name + '\n'
+
+
         context={
         "title":"testing",
         "searchby":searchby,
@@ -309,6 +319,7 @@ class SearchByView(TemplateView):
         "error2":error2,
         "searchby_num":sb,
         "obj":result,
+        "events":event_buffer,
         "len":len(result)
         }
         return render(request,"searchby.html",context)

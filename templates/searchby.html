@@ -72,7 +72,7 @@
 				<div class="col-sm-12">
 					<div class="col-sm-6" style="margin-bottom:20px;">
 						<select class="sel form-control" name="searchby" text="" selected="selected" style="width:100%;height: 46px;" placeholder="Search for" onchange="jsfunction()" id="selctd">
-							<!-- <option selected="{{ searchby }}" value="{{ searchby }}">{{ searchby }}</option> -->
+							<option selected="{{ searchby }}" value="{{ searchby }}">{{ searchby }}</option>
 							<option value="excelid">excelid</option>
 							<option value="name">name</option>
 							<option value="phone">phone</option>
@@ -113,7 +113,7 @@
 						<th>College</th>
 						<th>Email</th>
 						<th>Phone</th>
-						<th>Mark as present</th>
+						<th>ShortListed Events</th>
 					</tr>
 				</thead>
 				{% for object in obj  %}
@@ -124,11 +124,7 @@
 						<td>{{ object.college }}</td>
 						<td>{{ object.email }}</td>
 						<td>{{ object.phone }}</td>
-						{% if object.present %}
- 		 				<td><input type="checkbox" name="myTextEditBox1" value="checked1" onclick='update("{{ object.excelid }}")' checked/> mark </td>
- 		 				{% else %}
- 		 				<td><input type="checkbox" name="myTextEditBox1" value="checked1" onclick='update("{{ object.excelid }}")'/> mark </td>
- 		 				{% endif %}
+						<td>{{ events }} </td>
 					</tr>
 					{% endfor %}
 				</tbody>

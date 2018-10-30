@@ -16,3 +16,5 @@ RUN pipenv install --deploy --system --skip-lock --dev
 
 # Copy project
 COPY . /code/
+
+CMD exec gunicorn djangoapp.wsgi:application --bind 0.0.0.0:8000 --workers 3
